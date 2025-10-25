@@ -1,81 +1,101 @@
 #include <stdio.h>
 
 int main() {
-    // Variaveis da carta 1
-    char estado, codigo[4], cidade[15];
+    // Variáveis Carta 1
+    char estado, codigo[3], cidade[15];
     int populacao, pontosTuristicos;
-    float area, pib;
+    float area, pib_bilhoes, pib, pib_percapita, densidade_populacional; 
 
-    // Variaveis da carta 2
-    char estado2, codigo2[4], cidade2[15];
+    // Variáveis Carta 2
+    char estado2, codigo2[3], cidade2[15];
     int populacao2, pontosTuristicos2;
-    float area2, pib2;
+    float area2, pib_bilhoes2, pib2, pib_percapita2, densidade_populacional2; 
 
-    printf("Preencha os dados da primeira carta \n"); // Aqui o programa faz a leitura dos dados que usuário der entrada no teclado, que serão armazenados nas variáveis correspondentes.
+    // Entrada de dados - Carta 1
+    printf("Preencha os dados da primeira carta\n");
 
-    printf("Digite o estado (uma letra): \n");
+    printf("Digite o estado (uma letra): ");
+    fflush(stdin);
     scanf(" %c", &estado);
 
-    printf("Digite o codigo da carta: \n");
-    scanf(" %3s", codigo);
+    printf("Digite o codigo da carta: ");
+    scanf(" %s", codigo);
 
-    printf("Digite a cidade (ate 14 caracteres): \n");
-    scanf(" %14s", cidade);
+    printf("Digite a cidade (ate 15 caracteres): ");
+    scanf(" %s", cidade);
 
-    printf("Digite a populacao: \n");
-    scanf(" %i", &populacao);
+    printf("Digite a populacao: ");
+    scanf("%d", &populacao);
 
-    printf("Digite a quantidade de pontos turisticos: \n");
-    scanf(" %i", &pontosTuristicos);
+    printf("Digite a quantidade de pontos turisticos: ");
+    scanf("%d", &pontosTuristicos);
 
-    printf("Digite a area (em km²): \n");
-    scanf(" %f", &area);
+    printf("Digite a area (em km²): ");
+    scanf("%f", &area);
 
-    printf("Digite o PIB (em R$): \n");
-    scanf(" %f", &pib);
+    printf("Digite o PIB (em bilhões de reais): ");
+    scanf("%f", &pib_bilhoes);
 
-    printf("Preencha os dados da segunda carta \n"); // Aqui o programa lê os dados que serão enseridos da segunda carta e armazena nas variáveis correspondentes.
+    // Converte o valor digitado em bilhões para reais
+    pib = pib_bilhoes * 1000000000;
 
-    printf("Digite o estado (uma letra): \n");
+    // Entrada de dados - Carta 2
+    printf("\nPreencha os dados da segunda carta\n");
+
+    printf("Digite o estado (uma letra): ");
+    fflush(stdin);
     scanf(" %c", &estado2);
 
-    printf("Digite o codigo da carta: \n");
-    scanf(" %3s", codigo2);
+    printf("Digite o codigo da carta: ");
+    scanf(" %s", codigo2);
 
-    printf("Digite a cidade (ate 14 caracteres): \n");
-    scanf(" %14s", cidade2);
+    printf("Digite a cidade (ate 15 caracteres): ");
+    scanf(" %s", cidade2);
 
-    printf("Digite a populacao: \n");
-    scanf(" %i", &populacao2);
+    printf("Digite a populacao: ");
+    scanf("%d", &populacao2);
 
-    printf("Digite a quantidade de pontos turisticos: \n");
-    scanf(" %i", &pontosTuristicos2);
+    printf("Digite a quantidade de pontos turisticos: ");
+    scanf("%d", &pontosTuristicos2);
 
-    printf("Digite a area (em km²): \n");
-    scanf(" %f", &area2);
+    printf("Digite a area (em km²): ");
+    scanf("%f", &area2);
 
-    printf("Digite o PIB (em R$): \n");
-    scanf(" %f", &pib2);
+    printf("Digite o PIB (em bilhões de reais): ");
+    scanf("%f", &pib_bilhoes2);
 
-    // Abaixo o programa imprime os dados para o usuário das duas cartas que foram armazenados nas variáveis correspondentes.
+    // Converte o valor digitado em bilhões para reais
+    pib2 = pib_bilhoes2 * 1000000000;
 
-    printf("Carta 1 \n"); // Dados da carta 1
+    // Cálculos
+    densidade_populacional = (float) populacao / area;
+    pib_percapita = pib / (float) populacao;
+
+    densidade_populacional2 = (float) populacao2 / area2;
+    pib_percapita2 = pib2 / (float) populacao2;
+
+    // Saída de dados
+    printf("\n===== Carta 1 =====\n");
     printf("Estado: %c\n", estado);
-    printf("Código: %s\n", codigo);
+    printf("Codigo: %s\n", codigo);
     printf("Cidade: %s\n", cidade);
-    printf("População: %i\n", populacao);
-    printf("Área: %.2f\n", area);
-    printf("PIB: %.2f\n", pib);
-    printf("Número de Pontos Turísticos: %i\n", pontosTuristicos);
+    printf("Populacao: %d\n", populacao);
+    printf("Area: %.2f km²\n", area);
+    printf("PIB: %.2f bilhões de reais\n", pib / 1000000000); // <-- exibindo em bilhões
+    printf("Pontos Turisticos: %d\n", pontosTuristicos);
+    printf("Densidade Populacional: %.2f hab/km²\n", densidade_populacional);
+    printf("PIB per Capita: %.2f reais\n", pib_percapita);
 
-    printf("Carta 2 \n"); //Dados da carta 2
+    printf("\n===== Carta 2 =====\n");
     printf("Estado: %c\n", estado2);
-    printf("Código: %s\n", codigo2);
+    printf("Codigo: %s\n", codigo2);
     printf("Cidade: %s\n", cidade2);
-    printf("População: %i\n", populacao2);
-    printf("Área: %.2f km²\n", area2);
-    printf("PIB: %.2f Bilhões de reais\n", pib2);
-    printf("Número de Pontos Turísticos: %i\n", pontosTuristicos2);
+    printf("Populacao: %d\n", populacao2);
+    printf("Area: %.2f km²\n", area2);
+    printf("PIB: %.2f bilhões de reais\n", pib2 / 1000000000); // <-- exibindo em bilhões
+    printf("Pontos Turisticos: %d\n", pontosTuristicos2);
+    printf("Densidade Populacional: %.2f hab/km²\n", densidade_populacional2);
+    printf("PIB per Capita: %.2f reais\n", pib_percapita2);
 
-    return 0; // Finaliza o programa
+    return 0;
 }
